@@ -57,18 +57,20 @@
       </div>
     </section>
 
-    <section class="waitlist" id="waitlist">
-      <div class="container">
-        <h2>Coming Soon — Join the Waitlist</h2>
-        <p>
-          We’re inviting a small group of brokers, developers, and site selectors to the private beta.
-          Click the button below and we’ll reach out as soon as your invite is ready.
-        </p>
-        <a href="#top" class="btn primary">I’m Interested</a>
-        <p class="tiny-note">No forms yet — this is a preview landing page. The beta signup form will appear here.</p>
-      </div>
-    </section>
-  </main>
+    <section id="waitlist" class="waitlist-section">
+  <div class="container">
+    <h2>Join the Evolv³ Maps Beta</h2>
+    <p>Sign up to get early access to AI-powered real estate mapping and aerial automation tools.</p>
+
+    <form name="beta-signup" method="POST" data-netlify="true" class="waitlist-form">
+      <input type="hidden" name="form-name" value="beta-signup" />
+      <input type="email" name="email" placeholder="Your email address" required />
+      <button type="submit" class="btn primary">Join Beta</button>
+    </form>
+
+    <p class="form-note">We’ll notify you as soon as beta invites open.</p>
+  </div>
+</section>  </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
