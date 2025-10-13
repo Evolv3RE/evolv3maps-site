@@ -3,81 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evolv³ Maps — AI-Powered Real Estate Mapping</title>
-  <meta name="description" content="AI-powered real estate mapping. Generate branded aerials with development data and thoroughfare overlays." />
+  <title>Evolv³ Maps — Dev Build</title>
   <link href="styles.css" rel="stylesheet" />
   <link href="favicon.png" rel="icon" type="image/png" />
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-  <link rel="preconnect" href="https://api.mapbox.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="map"></div>
 
-  <header class="site-header">
+  <header class="site-header fade-up">
     <div class="brand">
       <span class="logo-dot"></span>
       <span class="brand-text">Evolv<sup>³</sup> Maps</span>
     </div>
-    <nav class="nav">
-      <a href="#about">About</a>
-      <a href="#waitlist" class="btn beta-btn">Join Beta</a>
-    </nav>
   </header>
 
-  <main>
-    <section class="hero" id="top">
-      <div class="hero-inner">
-        <h1 class="headline">AI-Powered Real Estate Mapping — Beta Live</h1>
-        <p class="subhead">Discover development data, infrastructure, and aerials — automatically.</p>
-        <div class="cta-group">
-          <a href="#waitlist" class="btn primary">Join Beta</a>
-          <a href="#about" class="btn ghost">Learn more</a>
-        </div>
-      </div>
-      <div class="gradient-overlay"></div>
-    </section>
-
-    <section class="about" id="about">
-      <div class="container">
-        <h2>What is Evolv<sup>³</sup> Maps?</h2>
-        <p>
-          A lightweight, broker-friendly mapping tool that auto-generates branded aerials with
-          city thoroughfare overlays, nearby developments, major employers, and infrastructure.
-          Drop in an address, get a shareable map and flyer in seconds.
-        </p>
-        <ul class="features">
-          <li>Branded aerial snapshots for listings</li>
-          <li>Thoroughfare & capital improvement overlays</li>
-          <li>Nearby developments & key employer layers</li>
-          <li>Export to PDF-ready flyers</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="waitlist" class="waitlist-section">
-  <div class="container">
-    <h2>Join the Evolv³ Maps Beta</h2>
-    <p>Sign up to get early access to AI-powered real estate mapping and aerial automation tools.</p>
-
-    <form name="beta-signup" method="POST" data-netlify="true" class="waitlist-form">
-      <input type="hidden" name="form-name" value="beta-signup" />
-      <input type="email" name="email" placeholder="Your email address" required />
-      <button type="submit" class="btn primary">Join Beta</button>
-    </form>
-
-    <p class="form-note">We’ll notify you as soon as beta invites open.</p>
+  <div class="search-bar fade-up">
+    <input type="text" id="addressInput" />
+    <button id="searchBtn">Search</button>
   </div>
-</section>  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© 2025 Evolve Holdings LLC. All rights reserved.</p>
-      <p><a href="mailto:michael@evolve-realestate.com">michael@evolve-realestate.com</a></p>
-    </div>
-  </footer>
 
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <script src="script.js"></script>
