@@ -1,4 +1,5 @@
-## v0.6.2 — 2025-10-27
-- Fix Mapbox rendering container causing blank view
-- Austin-centered, satellite-streets style
-- Keeps brightness overlay and dropzone
+## v0.6.3 — 2025-10-27
+- Fixed Mapbox CDN 404 / MIME nosniff by upgrading to GL JS v3.0.1
+- Static satellite map centered on Austin, TX
+- Coral header accent applied; dark navy theme retained
+- Added OG metadata and favicon

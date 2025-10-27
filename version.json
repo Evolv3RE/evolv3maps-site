@@ -1,5 +1,5 @@
 {
-  "version": "v0.6.2",
+  "version": "v0.6.3",
   "releaseDate": "2025-10-27T00:00:00+00:00",
-  "notes": "Fix Mapbox rendering container; Austin-centered satellite; keeps brightness overlay and dropzone."
+  "notes": "Mapbox render fix (v3.0.1), static satellite load, coral header accent, OG meta + favicon."
 }

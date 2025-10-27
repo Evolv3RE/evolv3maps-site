@@ -1,19 +1,19 @@
-# Evolv³ Maps v0.6 — Manual Update (No Code Needed)
+# Evolv³ Maps v0.6.3 — Satellite Render Fix + Coral Accent
 
-## What’s inside
-- Updated **index.html**, **script.js**, **styles.css**, and **favicon.png**
-- `src/config/version.json` with version + date
-- `CHANGELOG.md` with v0.6 notes
+## Upload (no terminal)
+1) GitHub → Evolv3RE/evolv3maps-site → **Add file → Upload files**
+2) Drag these files from the ZIP:
+   - index.html
+   - script.js
+   - styles.css
+   - CHANGELOG.md
+   - src/config/version.json
+   - branding/evolve-preview.png
+   - favicon.png
+3) Commit message: **Fix: Mapbox v3.0.1 render update (v0.6.3)**
+4) Commit directly to **main**. Netlify auto-publishes.
 
-## How to publish using the GitHub website
-1. Go to your repo: **Evolv3RE/evolv3maps-site** → click **Add file → Upload files**.
-2. Drag the files from this ZIP into the upload area. Make sure to keep the folder structure (`src/config/version.json`).
-3. Scroll down and click **Commit changes**.
-4. Netlify will automatically rebuild and deploy your site.
-
-## Post‑deploy checklist
-- The site loads and the map shows brighter satellite imagery during daytime.
-- Browser tab title reads **“Evolve Real Estate Maps | Powered by AI”** and the new favicon appears.
-- The **AI Enablement** drop-zone lets you click or drag to add files (shows a toast with names).
-- The file **src/config/version.json** contains `"version": "v0.6"`.
-- Netlify dashboard shows the latest build as **Published**.
+## Verify
+- Satellite map renders over Austin (zoom ~10)
+- Coral header bar visible
+- No console errors about Mapbox CDN or MIME type
