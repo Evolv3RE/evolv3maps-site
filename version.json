@@ -1,5 +1,5 @@
 {
-  "version": "v0.6.1",
+  "version": "v0.6.2",
   "releaseDate": "2025-10-27T00:00:00+00:00",
-  "notes": "Mapbox satellite integration centered on Austin; retains brightness overlay and dropzone UI."
+  "notes": "Fix Mapbox rendering container; Austin-centered satellite; keeps brightness overlay and dropzone."
 }
