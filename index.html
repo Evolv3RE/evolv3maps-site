@@ -1,30 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Evolv³ Maps — Dev Build</title>
-  <link href="styles.css" rel="stylesheet" />
-  <link href="favicon.png" rel="icon" type="image/png" />
-  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evolve Real Estate Maps | Powered by AI</title>
+  <meta name="description" content="AI-powered real estate mapping by Evolve Real Estate — visualize development corridors, retail growth, and land opportunities across Texas." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="theme-color" content="#0F1E3A" />
+  <style>
+    /* Fallback critical styles to avoid FOUC */
+    html, body { margin: 0; padding: 0; height: 100%; background:#0b0f1a; color:#fff; }
+    #app { height: 100vh; display:flex; flex-direction:column; }
+    header { padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    header .title { font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif; font-weight: 600; letter-spacing: 0.2px; }
+    #map { flex: 1; min-height: 420px; }
+  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="map"></div>
-
-  <header class="site-header fade-up">
-    <div class="brand">
-      <span class="logo-dot"></span>
-      <span class="brand-text">Evolv<sup>³</sup> Maps</span>
-    </div>
-  </header>
-
-  <div class="search-bar fade-up">
-    <input type="text" id="addressInput" />
-    <button id="searchBtn">Search</button>
+  <div id="app">
+    <header>
+      <div class="title">Evolve Real Estate Maps</div>
+    </header>
+    <main id="map" role="application" aria-label="Interactive map"></main>
+    <section class="panel">
+      <div class="panel-title">AI Enablement</div>
+      <div class="dropzone" id="dropzone">Drop files here (zips, images, geojson) or click to select</div>
+    </section>
   </div>
 
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <!-- Your Mapbox/Google scripts go here if embedded via script tags -->
   <script src="script.js"></script>
 </body>
 </html>
