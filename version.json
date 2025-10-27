@@ -1,5 +1,5 @@
 {
-  "version": "v0.6",
+  "version": "v0.6.1",
   "releaseDate": "2025-10-27T00:00:00+00:00",
-  "notes": "Enhance map brightness & UI polish; unify Evolve coral and deep-blue theme; improve AI Enablement tab handling."
+  "notes": "Mapbox satellite integration centered on Austin; retains brightness overlay and dropzone UI."
 }

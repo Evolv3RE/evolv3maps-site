@@ -1,5 +1,4 @@
-## v0.6 — 2025-10-27
-- Enhanced map brightness and daytime visibility
-- Unified Evolve coral (#F25260) and deep-blue accent palette
-- Improved AI Enablement drop-zone handling
-- Updated favicon and meta tags for brand consistency
+## v0.6.1 — 2025-10-27
+- Added Mapbox satellite integration (Austin-centered, zoom 9.5)
+- Kept brightness overlay and AI Enablement dropzone
+- Minor UI polish and stability
