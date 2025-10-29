@@ -1,0 +1,133 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "I-35 Corridor",
+        "layer": "thoroughfare"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.7431,
+            30.2672
+          ],
+          [
+            -97.6789,
+            30.5083
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "US-79 Corridor",
+        "layer": "thoroughfare"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.737,
+            30.3069
+          ],
+          [
+            -97.4037,
+            30.5624
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FM 973 Extension",
+        "layer": "thoroughfare"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -97.5831,
+            30.2708
+          ],
+          [
+            -97.5611,
+            30.4853
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hutto Development",
+        "layer": "development"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -97.546,
+              30.5415
+            ],
+            [
+              -97.518,
+              30.5415
+            ],
+            [
+              -97.518,
+              30.565
+            ],
+            [
+              -97.546,
+              30.565
+            ],
+            [
+              -97.546,
+              30.5415
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Samsung Development",
+        "layer": "development"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -97.467,
+              30.495
+            ],
+            [
+              -97.439,
+              30.495
+            ],
+            [
+              -97.439,
+              30.518
+            ],
+            [
+              -97.467,
+              30.518
+            ],
+            [
+              -97.467,
+              30.495
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
