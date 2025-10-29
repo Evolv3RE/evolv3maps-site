@@ -1,2 +1,24 @@
-// Evolv³ Maps v0.6.3 — Satellite Render Fix + Coral Accent
-(function(){window.addEventListener('load',function(){if(!window.mapboxgl){console.error('Mapbox GL JS failed to load.');return;}mapboxgl.accessToken='pk.eyJ1IjoiZXZvbHZlMSIsImEiOiJjbWQzZWwzZW4wNDB6MmpxNGl3dGNqODBkIn0.s-8k7OStBDRIC7SSFb6wKQ';var map=new mapboxgl.Map({container:'map',style:'mapbox://styles/mapbox/satellite-streets-v12',center:[-97.7431,30.2672],zoom:10,pitch:0,bearing:0});map.addControl(new mapboxgl.NavigationControl(),'top-right');var m=document.createElement('div');m.style.width='16px';m.style.height='16px';m.style.borderRadius='50%';m.style.background='#F25260';m.style.boxShadow='0 0 0 3px rgba(242,82,96,0.35)';new mapboxgl.Marker({element:m}).setLngLat([-97.7431,30.2672]).addTo(map);var mapEl=document.getElementById('map');var overlay=document.createElement('div');overlay.className='map-brightness-overlay';mapEl.appendChild(overlay);var dz=document.getElementById('dropzone');if(dz){['dragenter','dragover'].forEach(function(evt){dz.addEventListener(evt,function(e){e.preventDefault();e.stopPropagation();dz.style.borderColor='var(--evolve-coral)';dz.style.background='rgba(15,30,58,0.33)';dz.style.color='#fff';dz.textContent='Release to upload files';});});['dragleave','drop'].forEach(function(evt){dz.addEventListener(evt,function(e){e.preventDefault();e.stopPropagation();dz.style.borderColor='rgba(242,82,96,0.55)';dz.style.background='rgba(15,30,58,0.22)';dz.style.color='var(--muted)';dz.textContent='Drop files here (zips, images, geojson) or click to select';});});dz.addEventListener('drop',function(e){handleFiles(e.dataTransfer.files);});dz.addEventListener('click',function(){var input=document.createElement('input');input.type='file';input.multiple=true;input.accept='.zip,.png,.jpg,.jpeg,.webp,.geojson,.json';input.onchange=function(){handleFiles(input.files);};input.click();});}function handleFiles(fileList){if(!fileList||!fileList.length)return;var names=Array.from(fileList).map(function(f){return f.name;}).join(', ');toast('Files added: '+names);}function toast(msg){var n=document.createElement('div');n.textContent=msg;n.style.position='fixed';n.style.bottom='18px';n.style.right='18px';n.style.background='rgba(17,24,39,0.92)';n.style.color='#fff';n.style.padding='10px 12px';n.style.border='1px solid rgba(255,255,255,0.08)';n.style.borderRadius='10px';n.style.boxShadow='0 6px 22px rgba(0,0,0,0.35)';n.style.zIndex=9999;document.body.appendChild(n);setTimeout(function(){n.remove();},3200);}})();
+// Evolv³ Maps v0.6.4 — Clean script rewritten to fix syntax error and render Mapbox map
+window.addEventListener('load', () => {
+  if (!window.mapboxgl) {
+    console.error('Mapbox GL JS failed to load.');
+    return;
+  }
+
+  // Set Mapbox access token
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZXZvbHZlMSIsImEiOiJjbWQzZWwzZW4wNDB6MmpxNGl3dGNqODBkIn0.s-8k7OStBDRIC7SSFb6wKQ';
+
+  // Initialize map
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/satellite-streets-v12',
+    center: [-97.7431, 30.2672], // Austin coordinates as default center
+    zoom: 9
+  });
+
+  // Add zoom and rotation controls to the map
+  map.addControl(new mapboxgl.NavigationControl());
+
+  // Add a marker at the center
+  new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
+});
