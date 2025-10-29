@@ -4,31 +4,49 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Evolve Real Estate Maps | Powered by AI</title>
-<meta name="description" content="AI-powered real estate mapping by Evolve Real Estate — visualize development corridors and land opportunities across Texas.">
+<meta name="description" content="AI-powered real estate mapping by Evolve Real Estate — visualize development corridors and land opportunities across Texas." />
 <meta name="theme-color" content="#0B0F1A" />
 <meta property="og:title" content="Evolve Real Estate Maps | Powered by AI" />
-<meta property="og:description" content="AI-powered real estate mapping by Evolve Real Estate — visualize development corridors and growth across Texas.">
+<meta property="og:description" content="AI-powered real estate mapping by Evolve Real Estate — visualize development corridors and growth across Texas." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://evolv3maps.ai" />
 <meta property="og:image" content="https://evolv3maps.ai/branding/evolve-preview.png" />
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="stylesheet" href="styles.css" />
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 </head>
 <body>
 <div id="app">
-<header class="app-header">
-<div class="title">Evolve Real Estate Maps | Powered by AI</div>
-<button id="modeToggle" class="mode-toggle" hidden aria-hidden="true">☀︎</button>
-</header>
-<main role="main" class="main-wrap">
-<div id="map"></div>
-</main>
-<section class="panel">
-<div class="panel-title">AI Enablement</div>
-<div class="dropzone" id="dropzone">Drop files here (zips, images, geojson) or click to select</div>
-</section>
+  <header class="app-header">
+    <div class="title">Evolve Real Estate Maps | Powered by AI</div>
+    <button id="modeToggle" class="mode-toggle" hidden aria-hidden="true">☀︎</button>
+  </header>
+  <main role="main" class="main-wrap">
+    <div id="map"></div>
+  </main>
+  <section class="panel">
+    <div class="panel-title">AI Enablement</div>
+    <div class="dropzone" id="dropzone">Drop files here (zips, images, geojson) or click to select</div>
+  </section>
+  <!-- Beta sign-up and donation section -->
+  <section class="beta-signup">
+    <h2>Join the Beta</h2>
+    <form name="beta-signup" method="POST" data-netlify="true">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Email Address" required />
+      <button type="submit">Join Beta</button>
+    </form>
+    <h3>Support Evolv³ Maps</h3>
+    <form action="https://www.paypal.com/donate" method="post" target="_top">
+      <input type="hidden" name="business" value="michaelgonzalez21@gmail.com" />
+      <input type="hidden" name="no_recurring" value="0" />
+      <input type="hidden" name="item_name" value="Support Evolv³ Maps" />
+      <input type="hidden" name="currency_code" value="USD" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" name="submit" alt="Donate with PayPal button" />
+      <img alt="" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+  </section>
 </div>
 <script src="script.js"></script>
 </body>
