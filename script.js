@@ -1,4 +1,4 @@
-// Evolv³ Maps v0.6.5 — Throughfare plan toggle and root path
+// Evolv³ Maps v0.6.6 — Throughfare plan toggle and src/config path
 window.addEventListener('load', () => {
   if (!window.mapboxgl) {
     console.error('Mapbox GL JS failed to load.');
@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
   });
   map.addControl(new mapboxgl.NavigationControl());
   new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
-  fetch('taylor_transportation_plan.geojson')
+  fetch('src/config/taylor_transportation_plan.geojson')
     .then(resp => resp.json())
     .then(data => {
       map.on('load', () => {
