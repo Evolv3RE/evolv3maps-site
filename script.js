@@ -1,4 +1,4 @@
-// Evolv³ Maps v0.6.6 — Throughfare plan toggle and src/config path
+// Evolv³ Maps v0.6.7 — Throughfare plan toggle and fetch on map load
 window.addEventListener('load', () => {
   if (!window.mapboxgl) {
     console.error('Mapbox GL JS failed to load.');
@@ -13,10 +13,11 @@ window.addEventListener('load', () => {
   });
   map.addControl(new mapboxgl.NavigationControl());
   new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
-  fetch('src/config/taylor_transportation_plan.geojson')
-    .then(resp => resp.json())
-    .then(data => {
-      map.on('load', () => {
+  // when map has loaded, fetch and add throughfare layer
+  map.on('load', () => {
+    fetch('src/config/taylor_transportation_plan.geojson')
+      .then(resp => resp.json())
+      .then(data => {
         map.addSource('throughfare', { type: 'geojson', data: data });
         map.addLayer({
           id: 'throughfare-layer',
@@ -24,13 +25,13 @@ window.addEventListener('load', () => {
           source: 'throughfare',
           paint: { 'line-color': '#F25260', 'line-width': 2 }
         });
-        // create toggle
+        // create toggle controls
         const toggle = document.createElement('input');
         toggle.type = 'checkbox';
         toggle.id = 'throughfare-toggle';
         toggle.checked = true;
         toggle.style.position = 'absolute';
-        toggle.style.top = '10px';
+        toggle.style.top = '50px';
         toggle.style.left = '10px';
         toggle.style.zIndex = '1';
         document.body.appendChild(toggle);
@@ -38,11 +39,11 @@ window.addEventListener('load', () => {
         label.htmlFor = 'throughfare-toggle';
         label.innerText = 'Show throughfare plan';
         label.style.position = 'absolute';
-        label.style.top = '10px';
+        label.style.top = '50px';
         label.style.left = '35px';
         label.style.zIndex = '1';
         label.style.color = '#FFFFFF';
-        label.style.backgroundColor = '#F25260';
+        label.style.backgroundColor = '#004c6c';
         label.style.padding = '2px 6px';
         label.style.borderRadius = '4px';
         document.body.appendChild(label);
@@ -50,9 +51,9 @@ window.addEventListener('load', () => {
           const visibility = e.target.checked ? 'visible' : 'none';
           map.setLayoutProperty('throughfare-layer', 'visibility', visibility);
         });
+      })
+      .catch(err => {
+        console.error('Failed to load throughfare plan', err);
       });
-    })
-    .catch(err => {
-      console.error('Failed to load throughfare plan', err);
-    });
+  });
 });
