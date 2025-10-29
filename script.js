@@ -1,4 +1,4 @@
-// Evolv³ Maps v0.6.8 — Throughfare plan toggle and fetch on map load
+// Evolv³ Maps v1.0 — Austin corridor interactive map with toggle layers
 if (!window.mapboxgl) {
   console.error('Mapbox GL JS failed to load.');
 } else {
@@ -6,50 +6,81 @@ if (!window.mapboxgl) {
   const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/satellite-streets-v12',
-    center: [-97.7431, 30.2672],
+    center: [-97.5, 30.3],
     zoom: 9
   });
   map.addControl(new mapboxgl.NavigationControl());
+  // Add marker at Austin center (optional)
   new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
+
   map.on('load', () => {
-    fetch('src/config/taylor_transportation_plan.geojson')
+    fetch('src/config/austin_corridor.geojson')
       .then(resp => resp.json())
       .then(data => {
-        map.addSource('throughfare', { type: 'geojson', data: data });
+        // Single source with all features
+        map.addSource('austin_corridor', { type: 'geojson', data: data });
+
+        // Thoroughfare line layer
         map.addLayer({
-          id: 'throughfare-layer',
+          id: 'thoroughfare-layer',
           type: 'line',
-          source: 'throughfare',
-          paint: { 'line-color': '#F25260', 'line-width': 2 }
+          source: 'austin_corridor',
+          filter: ['==', ['get', 'layer'], 'thoroughfare'],
+          paint: {
+            'line-color': '#F25260',
+            'line-width': 2
+          }
         });
-        const toggle = document.createElement('input');
-        toggle.type = 'checkbox';
-        toggle.id = 'throughfare-toggle';
-        toggle.checked = true;
-        toggle.style.position = 'absolute';
-        toggle.style.top = '50px';
-        toggle.style.left = '10px';
-        toggle.style.zIndex = '1000';
-        document.body.appendChild(toggle);
-        const label = document.createElement('label');
-        label.htmlFor = 'throughfare-toggle';
-        label.innerText = 'Show throughfare plan';
-        label.style.position = 'absolute';
-        label.style.top = '50px';
-        label.style.left = '35px';
-        label.style.zIndex = '1000';
-        label.style.color = '#FFFFFF';
-        label.style.backgroundColor = '#004c6c';
-        label.style.padding = '2px 6px';
-        label.style.borderRadius = '4px';
-        document.body.appendChild(label);
-        toggle.addEventListener('change', e => {
-          const visibility = e.target.checked ? 'visible' : 'none';
-          map.setLayoutProperty('throughfare-layer', 'visibility', visibility);
+
+        // Development polygon layer
+        map.addLayer({
+          id: 'development-layer',
+          type: 'fill',
+          source: 'austin_corridor',
+          filter: ['==', ['get', 'layer'], 'development'],
+          paint: {
+            'fill-color': '#F25260',
+            'fill-opacity': 0.3,
+            'fill-outline-color': '#F25260'
+          }
         });
+
+        // Create toggle UI elements
+        function createToggle(id, layerId, labelText, top) {
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.id = id;
+          checkbox.checked = true;
+          checkbox.style.position = 'absolute';
+          checkbox.style.top = top + 'px';
+          checkbox.style.left = '10px';
+          checkbox.style.zIndex = '1000';
+          document.body.appendChild(checkbox);
+
+          const label = document.createElement('label');
+          label.htmlFor = id;
+          label.innerText = labelText;
+          label.style.position = 'absolute';
+          label.style.top = top + 'px';
+          label.style.left = '35px';
+          label.style.zIndex = '1000';
+          label.style.color = '#FFFFFF';
+          label.style.backgroundColor = '#004c6c';
+          label.style.padding = '2px 6px';
+          label.style.borderRadius = '4px';
+          document.body.appendChild(label);
+
+          checkbox.addEventListener('change', (e) => {
+            const visibility = e.target.checked ? 'visible' : 'none';
+            map.setLayoutProperty(layerId, 'visibility', visibility);
+          });
+        }
+
+        createToggle('thoroughfare-toggle', 'thoroughfare-layer', 'Show Thoroughfare Plan', 50);
+        createToggle('development-toggle', 'development-layer', 'Show Development Zones', 80);
       })
       .catch(err => {
-        console.error('Failed to load throughfare plan', err);
+        console.error('Failed to load Austin corridor data', err);
       });
   });
 }
