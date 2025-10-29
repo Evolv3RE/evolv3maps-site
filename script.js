@@ -1,9 +1,7 @@
-// Evolv³ Maps v0.6.7 — Throughfare plan toggle and fetch on map load
-window.addEventListener('load', () => {
-  if (!window.mapboxgl) {
-    console.error('Mapbox GL JS failed to load.');
-    return;
-  }
+// Evolv³ Maps v0.6.8 — Throughfare plan toggle and fetch on map load
+if (!window.mapboxgl) {
+  console.error('Mapbox GL JS failed to load.');
+} else {
   mapboxgl.accessToken = 'pk.eyJ1IjoiZXZvbHZlMSIsImEiOiJjbWQzZWwzZW4wNDB6MmpxNGl3dGNqODBkIn0.s-8k7OStBDRIC7SSFb6wKQ';
   const map = new mapboxgl.Map({
     container: 'map',
@@ -13,7 +11,6 @@ window.addEventListener('load', () => {
   });
   map.addControl(new mapboxgl.NavigationControl());
   new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
-  // when map has loaded, fetch and add throughfare layer
   map.on('load', () => {
     fetch('src/config/taylor_transportation_plan.geojson')
       .then(resp => resp.json())
@@ -25,7 +22,6 @@ window.addEventListener('load', () => {
           source: 'throughfare',
           paint: { 'line-color': '#F25260', 'line-width': 2 }
         });
-        // create toggle controls
         const toggle = document.createElement('input');
         toggle.type = 'checkbox';
         toggle.id = 'throughfare-toggle';
@@ -33,7 +29,7 @@ window.addEventListener('load', () => {
         toggle.style.position = 'absolute';
         toggle.style.top = '50px';
         toggle.style.left = '10px';
-        toggle.style.zIndex = '1';
+        toggle.style.zIndex = '1000';
         document.body.appendChild(toggle);
         const label = document.createElement('label');
         label.htmlFor = 'throughfare-toggle';
@@ -41,7 +37,7 @@ window.addEventListener('load', () => {
         label.style.position = 'absolute';
         label.style.top = '50px';
         label.style.left = '35px';
-        label.style.zIndex = '1';
+        label.style.zIndex = '1000';
         label.style.color = '#FFFFFF';
         label.style.backgroundColor = '#004c6c';
         label.style.padding = '2px 6px';
@@ -56,4 +52,4 @@ window.addEventListener('load', () => {
         console.error('Failed to load throughfare plan', err);
       });
   });
-});
+}
