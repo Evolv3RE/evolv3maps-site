@@ -1,4 +1,4 @@
-// Evolv³ Maps v1.0 — Austin corridor interactive map with toggle layers
+// Evolv³ Maps v1.1 — Austin corridor interactive map with zoning layer
 if (!window.mapboxgl) {
   console.error('Mapbox GL JS failed to load.');
 } else {
@@ -14,13 +14,43 @@ if (!window.mapboxgl) {
   new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
 
   map.on('load', () => {
+    // helper to create toggle checkboxes
+    function createToggle(id, layerId, labelText, top) {
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.id = id;
+      checkbox.checked = true;
+      checkbox.style.position = 'absolute';
+      checkbox.style.top = `${top}px`;
+      checkbox.style.left = '10px';
+      checkbox.style.zIndex = '1000';
+      document.body.appendChild(checkbox);
+
+      const label = document.createElement('label');
+      label.htmlFor = id;
+      label.innerText = labelText;
+      label.style.position = 'absolute';
+      label.style.top = `${top}px`;
+      label.style.left = '35px';
+      label.style.zIndex = '1000';
+      label.style.color = '#FFFFFF';
+      label.style.backgroundColor = '#004c6c';
+      label.style.padding = '2px 6px';
+      label.style.borderRadius = '4px';
+      document.body.appendChild(label);
+
+      checkbox.addEventListener('change', (e) => {
+        const visibility = e.target.checked ? 'visible' : 'none';
+        map.setLayoutProperty(layerId, 'visibility', visibility);
+      });
+    }
+
+    // Load Austin corridor data
     fetch('src/config/austin_corridor.geojson')
       .then(resp => resp.json())
       .then(data => {
-        // Single source with all features
-        map.addSource('austin_corridor', { type: 'geojson', data: data });
-
-        // Thoroughfare line layer
+        map.addSource('austin_corridor', { type: 'geojson', data });
+        // line layer for thoroughfare
         map.addLayer({
           id: 'thoroughfare-layer',
           type: 'line',
@@ -31,8 +61,7 @@ if (!window.mapboxgl) {
             'line-width': 2
           }
         });
-
-        // Development polygon layer
+        // polygon layer for developments
         map.addLayer({
           id: 'development-layer',
           type: 'fill',
@@ -44,43 +73,34 @@ if (!window.mapboxgl) {
             'fill-outline-color': '#F25260'
           }
         });
-
-        // Create toggle UI elements
-        function createToggle(id, layerId, labelText, top) {
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.id = id;
-          checkbox.checked = true;
-          checkbox.style.position = 'absolute';
-          checkbox.style.top = top + 'px';
-          checkbox.style.left = '10px';
-          checkbox.style.zIndex = '1000';
-          document.body.appendChild(checkbox);
-
-          const label = document.createElement('label');
-          label.htmlFor = id;
-          label.innerText = labelText;
-          label.style.position = 'absolute';
-          label.style.top = top + 'px';
-          label.style.left = '35px';
-          label.style.zIndex = '1000';
-          label.style.color = '#FFFFFF';
-          label.style.backgroundColor = '#004c6c';
-          label.style.padding = '2px 6px';
-          label.style.borderRadius = '4px';
-          document.body.appendChild(label);
-
-          checkbox.addEventListener('change', (e) => {
-            const visibility = e.target.checked ? 'visible' : 'none';
-            map.setLayoutProperty(layerId, 'visibility', visibility);
-          });
-        }
-
+        // toggles for corridor layers
         createToggle('thoroughfare-toggle', 'thoroughfare-layer', 'Show Thoroughfare Plan', 50);
         createToggle('development-toggle', 'development-layer', 'Show Development Zones', 80);
       })
       .catch(err => {
         console.error('Failed to load Austin corridor data', err);
+      });
+
+    // Load zoning data from live service
+    fetch('https://maps.austintexas.gov/arcgis/rest/services/Shared/Zoning_1/MapServer/0/query?where=1=1&outFields=*&outSR=4326&f=geojson')
+      .then(resp => resp.json())
+      .then(zoningData => {
+        map.addSource('zoning', { type: 'geojson', data: zoningData });
+        map.addLayer({
+          id: 'zoning-layer',
+          type: 'fill',
+          source: 'zoning',
+          paint: {
+            'fill-color': '#008080',
+            'fill-opacity': 0.2,
+            'fill-outline-color': '#008080'
+          }
+        });
+        // toggle for zoning layer
+        createToggle('zoning-toggle', 'zoning-layer', 'Show Zoning', 110);
+      })
+      .catch(err => {
+        console.error('Failed to load zoning data', err);
       });
   });
 }
