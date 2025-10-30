@@ -3,23 +3,23 @@ map.on('load', function() {
   // Add sources
   map.addSource('substations', {
     type: 'geojson',
-    data: './data/energy/power_substations_tx_v1.geojson'
+    data: '../data/energy/power_substations_tx_v1.geojson'
   });
   map.addSource('corridors', {
     type: 'geojson',
-    data: './data/energy/transmission_corridors_tx_v1.geojson'
+    data: '../data/energy/transmission_corridors_tx_v1.geojson'
   });
   map.addSource('buffer-2mi', {
     type: 'geojson',
-    data: './data/energy/buffers_2mi.geojson'
+    data: '../data/energy/buffers_2mi.geojson'
   });
   map.addSource('buffer-10mi', {
     type: 'geojson',
-    data: './data/energy/buffers_10mi.geojson'
+    data: '../data/energy/buffers_10mi.geojson'
   });
   map.addSource('buffer-20mi', {
     type: 'geojson',
-    data: './data/energy/buffers_20mi.geojson'
+    data: '../data/energy/buffers_20mi.geojson'
   });
 
   // Add layers
