@@ -1,0 +1,1 @@
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [-97.7431, 30.2672]}, "properties": {"name": "Sample Substation", "operator": "Sample Operator", "voltage_kv": 138, "county": "Travis"}}]}
