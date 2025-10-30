@@ -104,3 +104,14 @@ if (!window.mapboxgl) {
       });
   });
 }
+
+// Load power infrastructure scripts
+var s1 = document.createElement('script');
+s1.src = 'public/scripts/corridor_style.js';
+document.body.appendChild(s1);
+var s2 = document.createElement('script');
+s2.src = 'public/scripts/voltage_filter_ui.js';
+document.body.appendChild(s2);
+var s3 = document.createElement('script');
+s3.src = 'public/scripts/power_layerset.js';
+document.body.appendChild(s3);
