@@ -8,7 +8,8 @@ if (!window.mapboxgl) {
     style: 'mapbox://styles/mapbox/satellite-streets-v12',
     center: [-97.5, 30.3],
     zoom: 9
-  });
+  }window.map = map;
+);
   map.addControl(new mapboxgl.NavigationControl());
   // Add marker at Austin center (optional)
   new mapboxgl.Marker().setLngLat([-97.7431, 30.2672]).addTo(map);
