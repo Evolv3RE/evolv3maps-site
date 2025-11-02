@@ -106,7 +106,71 @@ if (!window.mapboxgl) {
   });
 }
 
-// Load power infrastructure scripts
+// Load energy datasets
+  map.on('load', () => {
+    // Substations
+    fetch('public/data/energy/substations.geojson')
+      .then(resp => resp.json())
+      .then(data => {
+        map.addSource('substations', { type: 'geojson', data });
+        map.addLayer({
+          id: 'substations-layer',
+          type: 'circle',
+          source: 'substations',
+          paint: {
+            'circle-color': '#FFD700',
+            'circle-radius': 4,
+            'circle-stroke-color': '#FF8C00',
+            'circle-stroke-width': 1
+          }
+        });
+        createToggle('substations-toggle', 'substations-layer', 'Show Substations', 140);
+      })
+      .catch(err => {
+        console.error('Failed to load substations data', err);
+      });
+    // Transmission lines
+    fetch('public/data/energy/transmission_lines.geojson')
+      .then(resp => resp.json())
+      .then(data => {
+        map.addSource('transmission-lines', { type: 'geojson', data });
+        map.addLayer({
+          id: 'transmission-lines-layer',
+          type: 'line',
+          source: 'transmission-lines',
+          paint: {
+            'line-color': '#FFFF00',
+            'line-width': 2
+          }
+        });
+        createToggle('transmission-lines-toggle', 'transmission-lines-layer', 'Show Transmission Lines', 170);
+      })
+      .catch(err => {
+        console.error('Failed to load transmission lines data', err);
+      });
+    // Power plants
+    fetch('public/data/energy/power_plants.geojson')
+      .then(resp => resp.json())
+      .then(data => {
+        map.addSource('power-plants', { type: 'geojson', data });
+        map.addLayer({
+          id: 'power-plants-layer',
+          type: 'circle',
+          source: 'power-plants',
+          paint: {
+            'circle-color': '#00FF00',
+            'circle-radius': 4,
+            'circle-stroke-color': '#008000',
+            'circle-stroke-width': 1
+          }
+        });
+        createToggle('power-plants-toggle', 'power-plants-layer', 'Show Power Plants', 200);
+      })
+      .catch(err => {
+        console.error('Failed to load power plants data', err);
+      });
+  })
+//* Load power infrastructure scripts
 var s1 = document.createElement('script');
 s1.src = './scripts/corridor_style.js';
 document.body.appendChild(s1);
@@ -116,3 +180,13 @@ document.body.appendChild(s2);
 var s3 = document.createElement('script');
 s3.src = './scripts/power_layerset.js';
 document.body.appendChild(s3);
+*/*//* // Load power infrastructure scripts
+var s1 = document.createElement('script');
+s1.src = './scripts/corridor_style.js';
+document.body.appendChild(s1);
+var s2 = document.createElement('script');
+s2.src = './scripts/voltage_filter_ui.js';
+document.body.appendChild(s2);
+var s3 = document.createElement('script');
+s3.src = './scripts/power_l);ayerset.js';
+document.body.appendChild*/(s3 */); */
